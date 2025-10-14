@@ -1,12 +1,35 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
   type PropsWithChildren,
 } from 'react'
 import { mockTasks } from '../data/mockTasks'
 import type { Task, TaskContextValue, TaskDraft } from '../types/task'
+
+const STORAGE_KEY = 'personal-task-manager/tasks'
+
+function readTasksFromStorage(): Task[] | undefined {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY)
+    if (!raw) return undefined
+    const parsed = JSON.parse(raw) as Task[]
+    if (!Array.isArray(parsed)) return undefined
+    return parsed
+  } catch {
+    return undefined
+  }
+}
+
+function writeTasksToStorage(tasks: Task[]): void {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
+  } catch {
+    // localStorage might be disabled or full; ignore errors to avoid breaking UX.
+  }
+}
 
 /**
  * TaskProvider creates a React context that stores the list of tasks and exposes
@@ -57,10 +80,19 @@ const TaskContext = createContext<TaskContextValue | undefined>(undefined)
 
 export function TaskProvider({ children }: PropsWithChildren) {
   /**
-   * `useReducer` holds the canonical list of tasks. `mockTasks` seeds the initial
-   * state so the list page has something to render before real CRUD is wired up.
+   * Initialize from localStorage when possible so users keep their data between
+   * reloads. We always fall back to the static mock tasks so first-time users
+   * still see helpful sample content.
    */
-  const [tasks, dispatch] = useReducer(tasksReducer, mockTasks)
+  const [tasks, dispatch] = useReducer(
+    tasksReducer,
+    undefined,
+    () => readTasksFromStorage() ?? mockTasks,
+  )
+
+  useEffect(() => {
+    writeTasksToStorage(tasks)
+  }, [tasks])
 
   const value = useMemo<TaskContextValue>(
     () => ({
