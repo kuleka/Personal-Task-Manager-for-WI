@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { TaskListItem } from '../components/TaskListItem'
 import { useTasks } from '../hooks/useTasks'
 
@@ -13,6 +14,9 @@ export function TaskListPage() {
     <section className="page">
       <header className="pageHeader">
         <h1>Tasks</h1>
+        <Link to="/tasks/new" className="primaryButton">
+          Add task
+        </Link>
       </header>
       {tasks.length === 0 ? (
         <p className="taskListEmpty">

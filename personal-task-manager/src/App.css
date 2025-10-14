@@ -148,3 +148,83 @@
   color: #72d6ff;
   font-weight: 600;
 }
+
+.taskForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.taskFormRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.taskFormRow span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.taskFormRow input,
+.taskFormRow textarea,
+.taskFormRow select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.65);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.taskFormRow select {
+  cursor: pointer;
+}
+
+.taskFormRow input::placeholder,
+.taskFormRow textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.taskFormRow input:focus,
+.taskFormRow textarea:focus,
+.taskFormRow select:focus {
+  outline: none;
+  border-color: rgba(114, 214, 255, 0.6);
+  box-shadow: 0 0 0 3px rgba(114, 214, 255, 0.25);
+}
+
+.taskFormActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.primaryButton {
+  padding: 0.6rem 1.3rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #5e5df0, #8093ff);
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(94, 93, 240, 0.35);
+}
+
+.primaryButton:focus-visible {
+  outline: 3px solid rgba(128, 147, 255, 0.65);
+  outline-offset: 2px;
+}
