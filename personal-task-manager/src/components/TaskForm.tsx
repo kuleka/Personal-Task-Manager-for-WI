@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { TaskDraft } from '../types/task'
 
 type TaskFormProps = {
@@ -24,6 +24,10 @@ export function TaskForm({
   submitLabel = 'Save task',
 }: TaskFormProps) {
   const [draft, setDraft] = useState<TaskDraft>(initialValue)
+  // Keep local state in sync if parent supplies a new initial value (e.g. edit mode).
+  useEffect(() => {
+    setDraft(initialValue)
+  }, [initialValue])
 
   function handleChange(
     field: keyof TaskDraft,
@@ -41,6 +45,7 @@ export function TaskForm({
       return
     }
     onSubmit({ ...draft, title: draft.title.trim() })
+    // Reset the form so users can add multiple tasks quickly when creating.
     setDraft(initialValue)
   }
 
