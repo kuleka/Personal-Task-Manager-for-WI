@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { TaskCreatePage } from './routes/TaskCreatePage'
 import { TaskDetailPage } from './routes/TaskDetailPage'
 import { TaskListPage } from './routes/TaskListPage'
 
@@ -8,6 +9,7 @@ function App() {
     <div className="appShell">
       <Routes>
         <Route path="/" element={<TaskListPage />} />
+        <Route path="/tasks/new" element={<TaskCreatePage />} />
         <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
