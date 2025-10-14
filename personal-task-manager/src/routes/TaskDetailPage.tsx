@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTasks } from '../hooks/useTasks'
 
 /**
@@ -7,7 +7,8 @@ import { useTasks } from '../hooks/useTasks'
  */
 export function TaskDetailPage() {
   const { taskId } = useParams<{ taskId: string }>()
-  const { getTaskById } = useTasks()
+  const navigate = useNavigate()
+  const { deleteTask, getTaskById } = useTasks()
 
   if (!taskId) {
     return (
@@ -56,7 +57,32 @@ export function TaskDetailPage() {
         </div>
       </dl>
       <nav className="taskDetailNav">
-        <Link to="/">← Back to tasks</Link>
+        <Link to="/" className="taskDetailBackLink">
+          ← Back to tasks
+        </Link>
+        <div className="taskDetailActions">
+          <Link
+            to={`/tasks/${task.id}/edit`}
+            className="secondaryButton"
+            aria-label={`Edit task ${task.title}`}
+          >
+            Edit
+          </Link>
+          <button
+            type="button"
+            className="dangerButton"
+            onClick={() => {
+              const confirmed = window.confirm(
+                'Delete this task? This action cannot be undone.',
+              )
+              if (!confirmed) return
+              deleteTask(task.id)
+              navigate('/')
+            }}
+          >
+            Delete
+          </button>
+        </div>
       </nav>
     </section>
   )
