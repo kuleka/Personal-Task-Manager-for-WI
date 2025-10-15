@@ -7,6 +7,26 @@
     'Segoe UI', sans-serif;
 }
 
+.skipLink {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  transform: translateY(-150%);
+  background: #5e5df0;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 120ms ease;
+  z-index: 1000;
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+  outline: 3px solid rgba(94, 93, 240, 0.45);
+  outline-offset: 2px;
+}
+
 .appShell {
   display: flex;
   flex-direction: column;
@@ -87,6 +107,13 @@
 .taskListLink {
   color: #72d6ff;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.taskListLink:focus-visible {
+  outline: 3px solid rgba(114, 214, 255, 0.55);
+  outline-offset: 2px;
 }
 
 .badge {
@@ -156,6 +183,11 @@
 .taskDetailBackLink {
   color: #72d6ff;
   font-weight: 600;
+}
+
+.taskDetailBackLink:focus-visible {
+  outline: 3px solid rgba(114, 214, 255, 0.55);
+  outline-offset: 2px;
 }
 
 .taskDetailActions {
@@ -243,6 +275,12 @@
   outline-offset: 2px;
 }
 
+.secondaryButton,
+.dangerButton,
+.primaryButton {
+  cursor: pointer;
+}
+
 .secondaryButton {
   padding: 0.55rem 1.1rem;
   border-radius: 12px;
@@ -287,4 +325,33 @@
 .dangerButton:focus-visible {
   outline: 3px solid rgba(255, 82, 82, 0.45);
   outline-offset: 2px;
+}
+
+@media (max-width: 540px) {
+  #root {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .page {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .taskDetailActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .taskDetailActions button,
+  .taskDetailActions a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pageHeader {
+    align-items: stretch;
+  }
+
+  .primaryButton {
+    justify-content: center;
+  }
 }

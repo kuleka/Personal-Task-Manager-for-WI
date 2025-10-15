@@ -11,7 +11,7 @@ export function TaskCreatePage() {
   const { addTask } = useTasks()
 
   return (
-    <section className="page">
+    <section className="page" id="main-content">
       <header className="pageHeader">
         <h1>Create task</h1>
       </header>

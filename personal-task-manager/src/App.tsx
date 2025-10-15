@@ -7,15 +7,20 @@ import { TaskListPage } from './routes/TaskListPage'
 
 function App() {
   return (
-    <div className="appShell">
-      <Routes>
-        <Route path="/" element={<TaskListPage />} />
-        <Route path="/tasks/new" element={<TaskCreatePage />} />
-        <Route path="/tasks/:taskId/edit" element={<TaskEditPage />} />
-        <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </div>
+    <>
+      <a className="skipLink" href="#main-content">
+        Skip to main content
+      </a>
+      <div className="appShell">
+        <Routes>
+          <Route path="/" element={<TaskListPage />} />
+          <Route path="/tasks/new" element={<TaskCreatePage />} />
+          <Route path="/tasks/:taskId/edit" element={<TaskEditPage />} />
+          <Route path="/tasks/:taskId" element={<TaskDetailPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </>
   )
 }
 

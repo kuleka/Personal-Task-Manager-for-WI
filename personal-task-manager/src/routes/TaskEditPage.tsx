@@ -13,7 +13,7 @@ export function TaskEditPage() {
 
   if (!taskId) {
     return (
-      <section className="page">
+      <section className="page" id="main-content">
         <header className="pageHeader">
           <h1>Task not found</h1>
         </header>
@@ -28,7 +28,7 @@ export function TaskEditPage() {
 
   if (!task) {
     return (
-      <section className="page">
+      <section className="page" id="main-content">
         <header className="pageHeader">
           <h1>Task not found</h1>
         </header>
@@ -41,7 +41,7 @@ export function TaskEditPage() {
   }
 
   return (
-    <section className="page">
+    <section className="page" id="main-content">
       <header className="pageHeader">
         <h1>Edit task</h1>
         <span className={`badge badge--${task.status}`}>{task.status}</span>

@@ -13,7 +13,7 @@ export function TaskListItem({ task }: TaskListItemProps) {
   const detailLink = `/tasks/${task.id}`
 
   return (
-    <li className="taskListItem">
+    <li className="taskListItem" aria-label={`Task titled ${task.title}`}>
       <div>
         <p className="taskListTitle">{task.title}</p>
         <p className="taskListDescription">{task.description}</p>

@@ -11,7 +11,7 @@ export function TaskListPage() {
   const { tasks } = useTasks()
 
   return (
-    <section className="page">
+    <section className="page" id="main-content" aria-live="polite">
       <header className="pageHeader">
         <h1>Tasks</h1>
         <Link to="/tasks/new" className="primaryButton">
