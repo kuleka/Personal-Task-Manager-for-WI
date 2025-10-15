@@ -40,7 +40,7 @@ export function TaskDetailPage() {
   }
 
   return (
-    <section className="page">
+    <section className="page" id="main-content">
       <header className="pageHeader">
         <h1>{task.title}</h1>
         <span className={`badge badge--${task.status}`}>{task.status}</span>
